@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>YGOMobile</title>
+<style>
+body {
+	background-color: rgb(16,16,56);
+    background-image: url('https://static.ygom.top/images/bg3.jpg');
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.logo {
+    background-image: url('https://static.ygom.top/images/ic_icon.png');
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+	background-size: 128px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    text-indent: -9999px;
+}
+
+@media (min-width: 600px) {
+    .logo {
+        background-size: 256px;
+    }
+}
+
+.main h1 {
+    display: block;
+    position: fixed;
+    top: 33%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 3.3rem;
+    font-weight: bold;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.main .slogan {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+	color: rgba(222, 222, 233, 0.9);
+}
+
+.main .mycard {
+    display: block;
+    position: fixed;
+    bottom: 12%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+	color: rgba(222, 222, 233, 0.8);
+    background-color: rgba(16,16,56, 0.6);;
+}
+.main .mycard a {
+    color: rgba(222, 222, 233, 0.9);
+    text-decoration: none;
+}
+.main .mycard a:hover {
+    color: rgba(222, 222, 233, 1);
+    text-decoration: underline;
+}
+
+.main .download {
+    display: block;
+    position: fixed;
+    top: 70%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    z-index: 888;
+}
+
+.main .download a {
+    display: inline-block;
+    height: 50px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+    line-height: 48px;
+    background-color: rgb(16,16,56);
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border: 1px solid rgb(0,255,255);
+    border-radius: 5px;
+}
+
+#downloadButton.qrcode:hover::after {
+    content: "手机扫码下载";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -110px;
+    margin-bottom: 10px;
+    width: 220px;
+    height: 260px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.66);
+    background-position: 10px 50px;
+    background-repeat: no-repeat;
+    background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQMAAACXljzdAAAAA3NCSVQICAjb4U/gAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M1cbXjNgAAAXdJREFUWIXll7sNhDAMhn9EQckIjJLRyGiMwgiUFCg+PxLC464+c+cCJf6EZCu/HQf0yfBHZIJYRzMwpmbtFt03zyHsOJHAaa0df6KRnpfJC1GHRc3hLz3ncSUjbQ8j4hhB6/NIXVxIQHJKgDsxvc0IIjO6K/GLJAt9j/pawTVTh+QedbF5kI0W+aXDeiSTFi56Ph9Jg008DyDJGiUTtGRtcyftAj458kfeWVHVJpshZu8QR2/kYEYoymlwRUvKTV14IJN0wFW0o/MBq+hOAhGd7mDPxMRkfUfHm0EL2zsRtXSF2HGg3Fkb7F6grV28EZsga9RlgmRHK42oEC6X5IZo1HlhtmtHm76lLBZA5ImoQs4k2wIVk/1M7smEqnir4Cnc5x2/BFrBB5IbkVwHKcuLysl9newPvMM4cHyXlBHCI5lrlV4JT2nQEULS9Eik8egT9kzIUqZ4epc4JVQuWB7O8pXrn5Q6lSmNCVT6b4j8HP2TT/Zr5AVgUYtkQt/riwAAAABJRU5ErkJggg==');
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.footer,
+.footer a {
+    color: #ccc;
+}
+
+#weixinTip {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    line-height: 1.5;
+    background-color: rgba(0, 0, 0, 0.66);
+    color: #fff;
+    text-align: center;
+    z-index: 999;
+}
+
+#weixinTip::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.66) transparent;
+}
+
+#weixinTip.blink {
+    animation: blink 0.5s alternate 5;
+}
+
+@keyframes blink {
+    0% {
+        background-color: rgba(0, 0, 0, 1);
+    }
+
+    100% {
+        background-color: rgba(0, 0, 0, 0.66);
+    }
+}
+</style>
+</head>
+<body>
+<div class="logo">
+    YGOMobile LOGO
+</div>
+<div id="weixinTip">
+    微信内不能下载<br>
+    请点击右上角<br>
+    在浏览器打开
+</div>
+<div class="main">
+    <h1>
+        YGOMobile
+    </h1>
+    <div class="slogan">
+        安卓上的YGOPro<br>
+        集成萌卡平台
+    </div>
+    <div class="download">
+        <a id="downloadButton" href="https://static.ygom.top/files/YGOMobile_3.11.4.Apk">下载</a>
+    </div>
+    <div class="mycard">
+        如果您需要电脑上使用<br>
+        <a href="https://mycard.moe/" target="_blank">请去萌卡MyCard官网直接下载萌卡平台</a>
+    </div>
+</div>
+<div class="footer">
+    <p>&copy; 2022 YGOMobile |
+        <a href="https://github.com/fallenstardust/YGOMobile-cn-ko-en" target="_blank">源代码</a> |
+        <a href="https://afdian.net/a/ygomobile"target="_blank">支持我们</a></p>
+	<a href="https://beian.miit.gov.cn/"target="_blank">浙ICP备2023031884号-1</a></p>
+</div>
+<script>
+window.onload = function() {
+    var ua = navigator.userAgent;
+    var isWeixin = /MicroMessenger/i.test(ua);
+    if (isWeixin) {
+        var weixinTip = document.getElementById('weixinTip');
+        var downloadButton = document.getElementById('downloadButton');
+        weixinTip.style.display = 'block';
+        downloadButton.onclick = function(e) {
+            e.preventDefault();
+            weixinTip.className += ' blink';
+            setTimeout(function() {
+                weixinTip.className = '';
+            }, 3000);
+        }
+    }
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+    if (!isMobile) {
+        var downloadButton = document.getElementById('downloadButton');
+        downloadButton.className += ' qrcode';
+    }
+    var isApple = /iPhone|iPad/i.test(ua);
+    if (isApple) {
+        alert("抱歉，没有苹果手机版本");
+    }
+}
+</script>
+</body>
+</html>
