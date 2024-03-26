@@ -1,4 +1,4 @@
-[versionname]3.11.4;
+[versionname]3.11.5;
 [download_link]https://static.ygom.top/files/YGOMobile_3.11.5.Apk$
 #pre_release_code
 100230201	100230201
