@@ -1,0 +1,26 @@
+on: 
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'ver_code.txt'
+jobs:
+  clear-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloudflare Cache Cleaner
+      # You may pin to the exact commit or the version.
+      # uses: Cyb3r-Jak3/action-cloudflare-cache@0975c184cb49c3e24ae345f2eba47857ebd5f1c0
+        uses: Cyb3r-Jak3/action-cloudflare-cache@v1.1.0
+        with:
+          # The Zone ID of your domain, which can be found in the right sidebar of your domain's overview page on the Cloudflare dashboard.
+          zone: ${{secrets.CLOUDFLARE_ZONEID}}
+          # Cloudflare API token to use
+          api_token: ${{secrets.CLOUDFLARE_API_TOKEN}}
+          # List of URLs to purge. If empty then everything is purged.
+          URLs: ${{secrets.CLOUDFLARE_URLS}} # optional
+          # The email address you registered your Cloudflare account with.
+          #email: # optional
+          # Your Global Cloudflare API key. Highly not recommended to use
+          #global_token: # optional
+          
