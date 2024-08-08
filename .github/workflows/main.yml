@@ -4,6 +4,8 @@ on:
       - 'main'
     paths:
       - 'ver_code.txt'
+  workflow_dispatch:
+
 jobs:
   clear-cache:
     runs-on: ubuntu-latest
