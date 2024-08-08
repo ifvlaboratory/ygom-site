@@ -19,7 +19,6 @@ jobs:
           api_token: ${{secrets.CLOUDFLARE_API_TOKEN}}
           # List of URLs to purge. If empty then everything is purged.
           URLs: | # optional
-            https://static.ygom.top/files/YGOMobile_latest.Apk
             https://ygom.top/ver_code.txt
           # The email address you registered your Cloudflare account with.
           #email: # optional
