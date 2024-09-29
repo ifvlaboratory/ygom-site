@@ -1,5 +1,5 @@
-[versionname]3.11.10fix1;
-[download_link]https://static.ygom.top/files/YGOMobile_3.11.10fix1.Apk$
+[versionname]3.11.11;
+[download_link]https://static.ygom.top/files/YGOMobile_3.11.11.Apk$
 #pre_release_code
 100200261	48705086
 100221000	93053159
