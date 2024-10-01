@@ -1,3 +1,7 @@
+name: 'Purge release cache'
+
+run-name: ${{ inputs.reason }}
+
 on: 
   push:
     branches:
@@ -5,6 +9,12 @@ on:
     paths:
       - 'ver_code.txt'
   workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running this action, can be omitted'
+        required: false
+        type: string
+        default: 'Purge release cache, manually triggered'
 
 jobs:
   cloudflare-purge-cache:
