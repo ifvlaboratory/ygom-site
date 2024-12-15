@@ -27,6 +27,8 @@ jobs:
           api_token: ${{secrets.CLOUDFLARE_API_TOKEN}}
           purge_everything: false
           purge_files: |
+            https://ygom.top
+            https://ygom.top/bdunion.txt
             https://ygom.top/ver_code.txt
             https://static.ygom.top/files/YGOMobile_latest.Apk
 
