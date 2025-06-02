@@ -28,6 +28,5 @@ jobs:
           purge_everything: false
           purge_files: |
             https://ygom.top/ver_code.txt
-            https://static.ygom.top/files/YGOMobile_latest.Apk
-
-          
+            https://www.ygom.top/ver_code.txt
+            https://files.ygom.top/files/YGOMobile_latest.Apk
