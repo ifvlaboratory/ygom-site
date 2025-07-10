@@ -1,0 +1,12 @@
+name = "ygom-site-1"
+compatibility_date = "2025-07-09"
+
+# routes = [
+#   { pattern = "shop.example.com", custom_domain = true }
+# ]
+
+[assets]
+directory = "./site"
+not_found_handling = "single-page-application"
+
+[vars]
