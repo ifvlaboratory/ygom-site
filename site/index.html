@@ -1,256 +1,876 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>YGOMobile</title>
-    <style>
-      body {
-        background-color: rgb(16, 16, 56);
-        background-image: url("images/background.webp");
-        background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
-        background-attachment: fixed;
-        background-size: cover;
-      }
-
-      .logo {
-        background-image: url("images/logo.webp");
-        background-position-x: center;
-        background-position-y: top;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100%;
-        background-size: 128px;
-        position: fixed;
-        top: 50px;
-        left: 0;
-        text-indent: -9999px;
-      }
-
-      @media (min-width: 600px) {
-        .logo {
-          background-size: 256px;
-        }
-      }
-
-      .main h1 {
-        display: block;
-        position: fixed;
-        top: 33%;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 3.3rem;
-        font-weight: bold;
-        color: rgba(255, 255, 255, 0.9);
-      }
-
-      .main .slogan {
-        display: block;
-        position: fixed;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 2rem;
-        color: rgba(222, 222, 233, 0.9);
-      }
-
-      .main .mycard {
-        display: block;
-        position: fixed;
-        bottom: 12%;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 1rem;
-        color: rgba(222, 222, 233, 0.8);
-        background-color: rgba(16, 16, 56, 0.6);
-      }
-      .main .mycard a {
-        color: rgba(222, 222, 233, 0.9);
-        text-decoration: none;
-      }
-      .main .mycard a:hover {
-        color: rgba(222, 222, 233, 1);
-        text-decoration: underline;
-      }
-
-      .main .download {
-        display: block;
-        position: fixed;
-        top: 70%;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 2rem;
-        z-index: 888;
-      }
-
-      .main .download a {
-        display: inline-block;
-        height: 50px;
-        margin: 0 auto;
-        padding: 0 40px;
-        text-align: center;
-        line-height: 48px;
-        background-color: rgb(16, 16, 56);
-        color: #ffffff;
-        font-size: 1.5rem;
-        text-decoration: none;
-        border: 1px solid rgb(0, 255, 255);
-        border-radius: 5px;
-      }
-
-      #downloadButton.qrcode:hover::after {
-        content: "手机扫码下载";
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        margin-left: -110px;
-        margin-bottom: 10px;
-        width: 220px;
-        height: 260px;
-        border-radius: 10px;
-        background-color: rgba(0, 0, 0, 0.66);
-        background-position: 10px 50px;
-        background-repeat: no-repeat;
-        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQMAAACXljzdAAAAA3NCSVQICAjb4U/gAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M1cbXjNgAAAXdJREFUWIXll7sNhDAMhn9EQckIjJLRyGiMwgiUFCg+PxLC464+c+cCJf6EZCu/HQf0yfBHZIJYRzMwpmbtFt03zyHsOJHAaa0df6KRnpfJC1GHRc3hLz3ncSUjbQ8j4hhB6/NIXVxIQHJKgDsxvc0IIjO6K/GLJAt9j/pawTVTh+QedbF5kI0W+aXDeiSTFi56Ph9Jg008DyDJGiUTtGRtcyftAj458kfeWVHVJpshZu8QR2/kYEYoymlwRUvKTV14IJN0wFW0o/MBq+hOAhGd7mDPxMRkfUfHm0EL2zsRtXSF2HGg3Fkb7F6grV28EZsga9RlgmRHK42oEC6X5IZo1HlhtmtHm76lLBZA5ImoQs4k2wIVk/1M7smEqnir4Cnc5x2/BFrBB5IbkVwHKcuLysl9newPvMM4cHyXlBHCI5lrlV4JT2nQEULS9Eik8egT9kzIUqZ4epc4JVQuWB7O8pXrn5Q6lSmNCVT6b4j8HP2TT/Zr5AVgUYtkQt/riwAAAABJRU5ErkJggg==");
-      }
-
-      .footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        text-align: center;
-        font-size: 12px;
-        line-height: 1.5;
-      }
-
-      .footer,
-      .footer a {
-        color: #ccc;
-      }
-
-      #weixinTip {
-        display: none;
-        position: fixed;
-        top: 10px;
-        right: 5px;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 1em;
-        line-height: 1.5;
-        background-color: rgba(0, 0, 0, 0.66);
-        color: #fff;
-        text-align: center;
-        z-index: 999;
-      }
-
-      #weixinTip::after {
-        content: "";
-        position: absolute;
-        bottom: 100%;
-        right: 15px;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: transparent transparent rgba(0, 0, 0, 0.66) transparent;
-      }
-
-      #weixinTip.blink {
-        animation: blink 0.5s alternate 5;
-      }
-
-      @keyframes blink {
-        0% {
-          background-color: rgba(0, 0, 0, 1);
-        }
-
-        100% {
-          background-color: rgba(0, 0, 0, 0.66);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="logo">YGOMobile LOGO</div>
-    <div id="weixinTip">
-      微信内不能下载<br />
-      请点击右上角<br />
-      在浏览器打开
-    </div>
-    <div class="main">
-      <h1>YGOMobile</h1>
-      <div class="slogan">
-        安卓上的YGOPro<br />
-        集成萌卡平台
-      </div>
-      <div class="download">
-        <a
-          id="downloadButton"
-          href="https://files.ygom.top/files/YGOMobile_3.12.5.Apk"
-          >下载</a
-        >
-      </div>
-      <div class="mycard">
-        如果您需要电脑上使用<br />
-        <a href="https://mycard.world/" target="_blank"
-          >请去萌卡MyCard官网直接下载萌卡平台</a
-        >
-      </div>
-    </div>
-    <div class="footer">
-      <p>
-        &copy; 2022 YGOMobile |
-        <a href="tutorial.html">教学</a> |
-        <a
-          href="https://github.com/fallenstardust/YGOMobile-cn-ko-en"
-          target="_blank"
-          >源代码</a
-        >
-        | <a href="https://afdian.com/a/ygomobile" target="_blank">支持我们</a>
-      </p>
-      <p>
-        <a href="https://beian.miit.gov.cn/" target="_blank"
-          >浙ICP备2023031884号-1</a
-        >
-      </p>
-    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
-      window.onload = function () {
-        var ua = navigator.userAgent;
-        var isWeixin = /MicroMessenger/i.test(ua);
-        if (isWeixin) {
-          var weixinTip = document.getElementById("weixinTip");
-          var downloadButton = document.getElementById("downloadButton");
-          weixinTip.style.display = "block";
-          downloadButton.onclick = function (e) {
-            e.preventDefault();
-            weixinTip.className += " blink";
-            setTimeout(function () {
-              weixinTip.className = "";
-            }, 3000);
-          };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'space-dark': '#0B0A1A',
+                        'space-blue': '#161436',
+                        'space-purple': '#2A1B55',
+                        'star-yellow': '#FFD700',
+                        'star-blue': '#00FFFF',
+                        'neon-purple': '#BB86FC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-fast': 'float 4s ease-in-out infinite',
+                        'twinkle': 'twinkle 3s ease-in-out infinite',
+                        'rotate-slow': 'rotate 15s linear infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        twinkle: {
+                            '0%, 100%': { opacity: 0.6 },
+                            '50%': { opacity: 1 },
+                        },
+                        rotate: {
+                            '0%': { transform: 'rotateY(0deg)' },
+                            '100%': { transform: 'rotateY(360deg)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 },
+                        }
+                    }
+                }
+            }
         }
-        var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
-        if (!isMobile) {
-          var downloadButton = document.getElementById("downloadButton");
-          downloadButton.className += " qrcode";
-        }
-        var isApple = /iPhone|iPad/i.test(ua);
-        if (isApple) {
-          alert("抱歉，没有苹果手机版本");
-        }
-      };
     </script>
-  </body>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-glow {
+                text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+            }
+            .bg-stars {
+                background-image: 
+                    radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+                    radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+                background-size: 50px 50px;
+                background-position: 0 0, 25px 25px;
+            }
+            .star {
+                position: absolute;
+                background-color: white;
+                border-radius: 50%;
+                animation: twinkle 3s infinite;
+            }
+            .star-large {
+                position: absolute;
+                background-color: white;
+                border-radius: 50%;
+                animation: twinkle 4s infinite;
+                box-shadow: 0 0 8px rgba(255,255,255,0.8);
+            }
+            .meteor {
+                position: absolute;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8));
+                transform-origin: top right;
+                animation: meteor 3s linear infinite;
+            }
+            .menu-open {
+                transform: translateX(0);
+            }
+            .menu-closed {
+                transform: translateX(100%);
+            }
+            .backdrop-blur {
+                backdrop-filter: blur(8px);
+            }
+            .blink {
+                animation: blink 1s step-end infinite;
+            }
+            .device-frame {
+                position: relative;
+                border-radius: 36px;
+                border: 8px solid #111;
+                box-shadow: 0 0 30px rgba(187,134,252,0.3);
+                overflow: hidden;
+                transition: all 0.5s ease;
+            }
+            .device-frame::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40%;
+                height: 20px;
+                background-color: #111;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+            .rotate-y-180 {
+                transform: rotateY(180deg);
+            }
+            .preserve-3d {
+                transform-style: preserve-3d;
+            }
+            .perspective {
+                perspective: 1000px;
+            }
+            .backface-hidden {
+                backface-visibility: hidden;
+            }
+            .scroll-indicator {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #BB86FC, #00FFFF);
+                z-index: 100;
+                transition: width 0.2s ease;
+            }
+            .feature-card {
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            .feature-card:hover {
+                transform: translateY(-8px) scale(1.02);
+            }
+            .loader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #0B0A1A;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease-out;
+            }
+            @keyframes blink {
+                50% { opacity: 0.5; }
+            }
+        }
+
+        @keyframes meteor {
+            from { transform: rotate(-45deg) translateX(0); opacity: 0; }
+            20% { opacity: 1; }
+            to { transform: rotate(-45deg) translateX(-1000px); opacity: 0; }
+        }
+        
+        /* 预加载关键样式 */
+        .critical-img {
+            background-color: #161436;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23BB86FC' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-space-dark text-gray-100 overflow-x-hidden opacity-0">
+    <!-- 页面加载动画 -->
+    <div class="loader" id="loader">
+        <div class="flex flex-col items-center">
+            <div class="w-16 h-16 rounded-full border-4 border-neon-purple border-t-transparent animate-spin mb-4"></div>
+            <p class="font-display text-neon-purple">加载中...</p>
+        </div>
+    </div>
+
+    <!-- 滚动进度条 -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- 星空背景装饰 -->
+    <div id="stars-container" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-space-dark/80 backdrop-blur-md border-b border-space-purple/30 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-purple to-star-blue flex items-center justify-center">
+                    <img src="images/logo.webp" alt="YGOMobile Logo" class="w-24 sm:w-32 md:w-48 lg:w-64 mx-auto drop-shadow-[0_0_15px_rgba(187,134,252,0.5)]">
+                </div>
+                <span class="font-display font-bold text-xl text-white">YGOMobile</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#features" class="hover:text-neon-purple transition-colors">特性</a>
+                <a href="#screenshots" class="hover:text-neon-purple transition-colors">界面展示</a>
+                <a href="#download" class="hover:text-neon-purple transition-colors">下载</a>
+                <a href="#guide" class="hover:text-neon-purple transition-colors">指南</a>
+                <a href="#about" class="hover:text-neon-purple transition-colors">关于</a>
+            </div>
+            <button id="menuToggle" class="md:hidden text-white text-xl focus:outline-none">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-64 bg-space-dark/95 backdrop-blur z-50 border-l border-space-purple/30 transition-transform duration-300 ease-in-out menu-closed">
+        <div class="p-4 border-b border-space-purple/30 flex justify-between items-center">
+            <span class="font-display font-bold text-lg">菜单</span>
+            <button id="closeMenu" class="text-white text-xl focus:outline-none">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-4">
+                <li><a href="#features" class="block py-2 hover:text-neon-purple transition-colors">特性</a></li>
+                <li><a href="#screenshots" class="block py-2 hover:text-neon-purple transition-colors">界面展示</a></li>
+                <li><a href="#download" class="block py-2 hover:text-neon-purple transition-colors">下载</a></li>
+                <li><a href="#guide" class="block py-2 hover:text-neon-purple transition-colors">指南</a></li>
+                <li><a href="#about" class="block py-2 hover:text-neon-purple transition-colors">关于</a></li>
+                <li><a href="tutorial.html" class="block py-2 hover:text-neon-purple transition-colors">教学</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 主视觉区域 -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-stars pt-16">
+        <!-- 装饰元素 -->
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-space-purple/30 blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-space-blue/40 blur-3xl animate-pulse-slow" style="animation-delay: 1s"></div>
+        
+        <div class="container mx-auto px-4 z-10 text-center">
+            <div class="mb-6 sm:mb-10 animate-float opacity-0" style="animation-delay: 0.3s" id="headerLogo">
+                <img src="images/logo.webp" alt="YGOMobile Logo" class="w-24 sm:w-32 md:w-48 lg:w-64 mx-auto drop-shadow-[0_0_15px_rgba(187,134,252,0.5)]">
+            </div>
+            <h1 class="text-[clamp(2rem,8vw,4rem)] font-display font-bold mb-4 sm:mb-6 leading-tight opacity-0" style="animation-delay: 0.6s" id="headerTitle">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-neon-purple to-star-blue text-shadow-glow">YGOMobile</span>
+            </h1>
+            <p class="text-[clamp(1rem,3vw,1.5rem)] text-gray-300 mb-6 sm:mb-10 max-w-md mx-auto opacity-0" style="animation-delay: 0.9s" id="headerDesc">
+                安卓上的YGOPro，集成萌卡平台<br>
+                <span class="text-neon-purple/80">口袋里的游戏王模拟器</span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0" style="animation-delay: 1.2s" id="headerCTA">
+                <a href="#download" class="px-6 py-4 sm:px-8 sm:py-4 bg-gradient-to-r from-space-purple to-space-blue rounded-lg border border-neon-purple/50 text-white font-bold text-lg hover:shadow-[0_0_15px_rgba(187,134,252,0.5)] transition-all transform hover:-translate-y-1 min-w-[200px] active:scale-95">
+                    <i class="fa fa-download mr-2"></i>立即下载
+                </a>
+                <a href="#screenshots" class="px-6 py-4 sm:px-8 sm:py-4 bg-transparent rounded-lg border border-gray-500 text-white font-bold text-lg hover:border-neon-purple hover:text-neon-purple transition-all transform hover:-translate-y-1 min-w-[200px] active:scale-95">
+                    <i class="fa fa-images mr-2"></i>查看界面
+                </a>
+            </div>
+        </div>
+        
+        <!-- 滚动提示 -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-0" style="animation-delay: 1.5s" id="scrollHint">
+            <i class="fa fa-chevron-down text-gray-400"></i>
+        </div>
+    </header>
+
+    <!-- 特性部分 -->
+    <section id="features" class="py-16 sm:py-20 relative bg-space-blue/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-[clamp(1.5rem,5vw,2.5rem)] font-display font-bold text-center mb-10 sm:mb-16 reveal-element">
+                <span class="text-neon-purple text-shadow-glow">核心</span>特性
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- 特性卡片 1 -->
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl p-6 border border-space-purple/30 hover:border-neon-purple/50 feature-card hover:shadow-[0_0_20px_rgba(187,134,252,0.2)] reveal-element">
+                    <div class="w-14 h-14 rounded-full bg-space-purple/40 flex items-center justify-center mb-5">
+                        <i class="fa fa-wifi text-2xl text-star-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">萌卡平台集成</h3>
+                    <p class="text-gray-400">无缝对接萌卡平台，轻松在线匹配对手，参与各种比赛活动，与全球玩家一同决斗。</p>
+                </div>
+                
+                <!-- 特性卡片 2 -->
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl p-6 border border-space-purple/30 hover:border-neon-purple/50 feature-card hover:shadow-[0_0_20px_rgba(187,134,252,0.2)] reveal-element" style="transition-delay: 0.1s">
+                    <div class="w-14 h-14 rounded-full bg-space-purple/40 flex items-center justify-center mb-5">
+                        <i class="fa fa-mobile text-2xl text-star-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">适配移动设备</h3>
+                    <p class="text-gray-400">针对安卓设备优化的性能，在低配手机上也能享受流畅的游戏体验。</p>
+                </div>
+                
+                <!-- 特性卡片 3 -->
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl p-6 border border-space-purple/30 hover:border-neon-purple/50 feature-card hover:shadow-[0_0_20px_rgba(187,134,252,0.2)] reveal-element" style="transition-delay: 0.2s">
+                    <div class="w-14 h-14 rounded-full bg-space-purple/40 flex items-center justify-center mb-5">
+                        <i class="fa fa-refresh text-2xl text-star-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">持续更新维护</h3>
+                    <p class="text-gray-400">由萌卡与YGOPro团队持续更新维护，及时跟进最新卡牌和规则，提供稳定的游戏环境。</p>
+                </div>
+                
+                <!-- 特性卡片 4 -->
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl p-6 border border-space-purple/30 hover:border-neon-purple/50 feature-card hover:shadow-[0_0_20px_rgba(187,134,252,0.2)] reveal-element" style="transition-delay: 0.3s">
+                    <div class="w-14 h-14 rounded-full bg-space-purple/40 flex items-center justify-center mb-5">
+                        <i class="fa fa-users text-2xl text-star-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">人机对战</h3>
+                    <p class="text-gray-400">内置AI对手，随时可以进行练习，提升你的决斗技巧，磨练卡组策略。</p>
+                </div>
+                
+                <!-- 特性卡片 5 -->
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl p-6 border border-space-purple/30 hover:border-neon-purple/50 feature-card hover:shadow-[0_0_20px_rgba(187,134,252,0.2)] reveal-element" style="transition-delay: 0.4s">
+                    <div class="w-14 h-14 rounded-full bg-space-purple/40 flex items-center justify-center mb-5">
+                        <i class="fa fa-database text-2xl text-star-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">全卡库支持</h3>
+                    <p class="text-gray-400">包含游戏王全系列卡牌，支持自定义卡组，0成本测试构筑强度。</p>
+                </div>
+                
+                <!-- 特性卡片 6 -->
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl p-6 border border-space-purple/30 hover:border-neon-purple/50 feature-card hover:shadow-[0_0_20px_rgba(187,134,252,0.2)] reveal-element" style="transition-delay: 0.5s">
+                    <div class="w-14 h-14 rounded-full bg-space-purple/40 flex items-center justify-center mb-5">
+                        <i class="fa fa-code-fork text-2xl text-star-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">开源免费</h3>
+                    <p class="text-gray-400">完全开源免费的软件，无任何广告和内购，纯粹的游戏王决斗体验。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D界面展示部分 -->
+    <section id="screenshots" class="py-16 sm:py-20 relative bg-stars">
+        <div class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-space-blue/30 to-transparent"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-[clamp(1.5rem,5vw,2.5rem)] font-display font-bold text-center mb-10 sm:mb-16 reveal-element">
+                <span class="text-neon-purple text-shadow-glow">卡组</span>界面展示
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- 竖屏展示 -->
+                <div class="flex justify-center perspective reveal-element">
+                    <div class="device-frame w-[280px] h-[560px] animate-float preserve-3d transition-transform duration-1000 hover:rotate-y-30">
+                        <img src="images/vertical.jpg" alt="YGOMobile竖屏界面" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- 横屏展示 -->
+                <div class="flex justify-center perspective reveal-element" style="transition-delay: 0.3s">
+                    <div class="device-frame w-[560px] h-[320px] animate-float-fast preserve-3d transition-transform duration-1000 hover:rotate-y-30" style="animation-delay: 1s">
+                        <img src="images/horizon.jpg" alt="YGOMobile横屏界面" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center reveal-element" style="transition-delay: 0.5s">
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    精心设计的游戏界面，支持竖屏与横屏两种模式，满足游戏王模拟器和资料查询需求。无论是快速匹配还是深入卡组编辑，都能提供流畅体验。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载部分 -->
+    <section id="download" class="py-16 sm:py-20 relative bg-space-blue/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-[clamp(1.5rem,5vw,2.5rem)] font-display font-bold text-center mb-10 sm:mb-16 reveal-element">
+                下载 <span class="text-neon-purple text-shadow-glow">最新</span>版本
+            </h2>
+            
+            <div class="max-w-3xl mx-auto bg-space-dark/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-space-purple/50 shadow-[0_0_30px_rgba(187,134,252,0.15)] reveal-element">
+                <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+                    <div class="w-full md:w-1/3">
+                        <div class="bg-space-blue p-4 rounded-xl text-center">
+                            <img src="images/qrcode_dark.png" alt="下载二维码" class="w-full max-w-xs mx-auto rounded-lg">
+                            <p class="mt-4 text-gray-300 text-sm">扫码下载最新版本</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-4 text-white">YGOMobile 3.12.5</h3>
+                        <p class="text-gray-400 mb-6">最新稳定版本 · 更新于 2025年8月</p>
+                        
+                        <div class="flex flex-wrap gap-4 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fa fa-android text-green-500"></i>
+                                <span class="text-gray-300">Android</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa fa-file-apk-o text-orange-500"></i>
+                                <span class="text-gray-300">APK 格式</span>
+                            </div>
+                        </div>
+                        
+                        <a id="downloadButton" href="https://files.ygom.top/files/YGOMobile_3.12.5.Apk" class="inline-flex items-center justify-center px-6 py-4 sm:px-8 sm:py-4 bg-gradient-to-r from-neon-purple to-star-blue rounded-lg text-white font-bold text-lg hover:shadow-[0_0_15px_rgba(187,134,252,0.7)] transition-all transform hover:-translate-y-1 w-full md:w-auto min-h-[50px] active:scale-95">
+                            <i class="fa fa-download mr-2"></i>直接下载
+                        </a>
+                        
+                        <div id="weixinTip" class="hidden mt-4 p-4 bg-black/60 rounded-lg text-center text-white">
+                            微信内不能下载<br>
+                            请点击右上角<br>
+                            在浏览器打开
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 sm:mt-8 pt-6 border-t border-gray-800">
+                    <h4 class="text-lg font-semibold mb-3 text-gray-300">电脑端用户？</h4>
+                    <p class="text-gray-400">
+                        如果您需要在电脑上使用，请访问 
+                        <a href="https://mycard.world/" target="_blank" class="text-neon-purple hover:underline">萌卡MyCard官网</a> 
+                        直接下载萌卡平台
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 指南部分 -->
+    <section id="guide" class="py-16 sm:py-20 relative bg-stars">
+        <div class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-space-blue/30 to-transparent"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-[clamp(1.5rem,5vw,2.5rem)] font-display font-bold text-center mb-10 sm:mb-16 reveal-element">
+                <span class="text-neon-purple text-shadow-glow">使用</span>指南
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl overflow-hidden border border-space-purple/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(187,134,252,0.15)] reveal-element">
+                    <div class="h-48 bg-gradient-to-r from-space-purple to-space-blue relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center group cursor-pointer">
+                            <i class="fa fa-play-circle-o text-6xl text-white/70 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-stars opacity-30"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-white">新手入门教程</h3>
+                        <p class="text-gray-400 mb-4">从零开始的游戏王之旅，快速掌握基本操作和对战规则，成为决斗大师。</p>
+                        <a href="tutorial.html" class="inline-flex items-center text-neon-purple hover:text-star-blue transition-colors">
+                            查看教程 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-space-dark/60 backdrop-blur-sm rounded-xl overflow-hidden border border-space-purple/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(187,134,252,0.15)] reveal-element" style="transition-delay: 0.3s">
+                    <div class="h-48 bg-gradient-to-r from-space-blue to-space-purple relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center group cursor-pointer">
+                            <i class="fa fa-question-circle text-6xl text-white/70 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-stars opacity-30"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-white">常见问题解答</h3>
+                        <p class="text-gray-400 mb-4">解答关于安装、更新、联机等常见问题，解决你的所有疑惑。</p>
+                        <a href="tutorial.html#faq" class="inline-flex items-center text-neon-purple hover:text-star-blue transition-colors">
+                            查看FAQ <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 快速指南 -->
+            <div class="mt-12 sm:mt-16 bg-space-dark/40 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-space-purple/20 reveal-element" style="transition-delay: 0.5s">
+                <h3 class="text-2xl font-bold mb-6 text-white text-center">快速上手</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex flex-col items-center text-center transform transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full bg-space-purple/30 flex items-center justify-center mb-4">
+                            <span class="text-2xl font-bold text-star-blue">1</span>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white">下载安装</h4>
+                        <p class="text-gray-400 text-sm">下载APK文件并安装到你的安卓设备，首次安装可能需要允许未知来源。</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center transform transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full bg-space-purple/30 flex items-center justify-center mb-4">
+                            <span class="text-2xl font-bold text-star-blue">2</span>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white">更新卡片</h4>
+                        <p class="text-gray-400 text-sm">首次启动后会自动更新卡片数据，确保你拥有最新的卡牌库。</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center transform transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full bg-space-purple/30 flex items-center justify-center mb-4">
+                            <span class="text-2xl font-bold text-star-blue">3</span>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2 text-white">开始决斗</h4>
+                        <p class="text-gray-400 text-sm">创建卡组，选择对战模式，可以与人机练习或通过萌卡平台联机对战。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于部分 -->
+    <section id="about" class="py-16 sm:py-20 relative bg-space-blue/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-[clamp(1.5rem,5vw,2.5rem)] font-display font-bold text-center mb-10 sm:mb-16 reveal-element">
+                关于 <span class="text-neon-purple text-shadow-glow">YGOMobile</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto bg-space-dark/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-space-purple/50 reveal-element">
+                <div class="flex flex-col md:flex-row gap-6 sm:gap-8 items-center">
+                    <div class="w-full md:w-1/3">
+                        <div class="relative rounded-xl overflow-hidden border border-neon-purple/30 transform transition-all duration-500 hover:scale-105">
+                            <img src="images/aboutUs.jpg" alt="开发团队" class="w-full">
+                            <div class="absolute inset-0 bg-gradient-to-t from-space-dark to-transparent"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-4 text-white">开发历程</h3>
+                        <p class="text-gray-300 mb-4">
+                            2014年初，garymb将电脑上的YGOPro移植成了安卓平台的YGOMobile，让玩家可以在手机上打牌。
+                        </p>
+                        <p class="text-gray-300 mb-4">
+                            2016年下半年，garymb默默淡出了开发，由伤心暗星尘接手继续开发，发布了YGOMobile 3.0版本。
+                        </p>
+                        <p class="text-gray-300">
+                            如今，YGOMobile由萌卡、YGOPro开源社区开发团队共同维护更新，持续为玩家提供更好的游戏体验。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 sm:mt-10 pt-6 border-t border-gray-800">
+                    <h3 class="text-xl font-bold mb-6 text-white">支持我们</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <a href="https://github.com/fallenstardust/YGOMobile-cn-ko-en" target="_blank" class="flex items-center gap-3 p-4 bg-space-blue/30 rounded-lg hover:bg-space-purple/30 transition-colors min-h-[100px] group">
+                            <i class="fa fa-github text-2xl group-hover:text-neon-purple transition-colors"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">源代码</h4>
+                                <p class="text-sm text-gray-400">GitHub</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://afdian.com/a/ygomobile" target="_blank" class="flex items-center gap-3 p-4 bg-space-blue/30 rounded-lg hover:bg-space-purple/30 transition-colors min-h-[100px] group">
+                            <i class="fa fa-heart text-2xl text-red-500 group-hover:scale-110 transition-transform"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">支持我们</h4>
+                                <p class="text-sm text-gray-400">爱发电</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://ygobbs2.com/" class="flex items-center gap-3 p-4 bg-space-blue/30 rounded-lg hover:bg-space-purple/30 transition-colors min-h-[100px] group">
+                            <i class="fa fa-comments text-2xl group-hover:text-neon-purple transition-colors"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">社区讨论</h4>
+                                <p class="text-sm text-gray-400">加入我们</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://qm.qq.com/q/N5FJkXqxWe" class="flex items-center gap-3 p-4 bg-space-blue/30 rounded-lg hover:bg-space-purple/30 transition-colors min-h-[100px] group">
+                            <i class="fa fa-bug text-2xl group-hover:text-neon-purple transition-colors"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">反馈问题</h4>
+                                <p class="text-sm text-gray-400">提交Issue</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-8 sm:py-10 bg-space-dark border-t border-space-purple/30">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-neon-purple to-star-blue flex items-center justify-center">
+                            <i class="fa fa-star text-white text-sm"></i>
+                        </div>
+                        <span class="font-display font-bold text-lg text-white">YGOMobile</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">© 2014 YGOMobile</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 md:mb-0">
+                    <a href="#features" class="text-gray-400 hover:text-neon-purple transition-colors">特性</a>
+                    <a href="#screenshots" class="text-gray-400 hover:text-neon-purple transition-colors">界面展示</a>
+                    <a href="#download" class="text-gray-400 hover:text-neon-purple transition-colors">下载</a>
+                    <a href="#guide" class="text-gray-400 hover:text-neon-purple transition-colors">指南</a>
+                    <a href="#about" class="text-gray-400 hover:text-neon-purple transition-colors">关于</a>
+                    <a href="tutorial.html" class="text-gray-400 hover:text-neon-purple transition-colors">教学</a>
+                </div>
+                
+                <div>
+                    <a href="https://beian.miit.gov.cn/" target="_blank" class="text-gray-500 hover:text-gray-300 text-sm">浙ICP备2023031884号-1</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 页面加载完成后的淡入效果
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loader').style.display = 'none';
+                    document.body.classList.add('animate-fade-in');
+                    document.body.style.opacity = '1';
+                    
+                    // 启动首屏元素动画
+                    document.getElementById('headerLogo').classList.add('animate-fade-in');
+                    document.getElementById('headerTitle').classList.add('animate-fade-in');
+                    document.getElementById('headerDesc').classList.add('animate-fade-in');
+                    document.getElementById('headerCTA').classList.add('animate-fade-in');
+                    document.getElementById('scrollHint').classList.add('animate-fade-in');
+                }, 500);
+            }, 1000);
+        });
+
+        // 创建星空背景（增强版）
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const count = window.innerWidth < 768 ? 80 : 150; // 移动端减少星星数量
+            const largeStarCount = window.innerWidth < 768 ? 10 : 20; // 大型星星数量
+            
+            // 创建普通星星
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机大小和位置
+                const size = Math.random() * 2;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(star);
+            }
+            
+            // 创建大型星星（带光晕）
+            for (let i = 0; i < largeStarCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star-large');
+                
+                // 随机大小和位置
+                const size = Math.random() * 3 + 2;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(star);
+            }
+            
+            // 创建流星
+            function createMeteor() {
+                const meteor = document.createElement('div');
+                meteor.classList.add('meteor');
+                
+                // 随机大小和位置
+                const width = Math.random() * 100 + 50;
+                const height = 2;
+                const x = 110;
+                const y = Math.random() * 50 + 20;
+                
+                meteor.style.width = `${width}px`;
+                meteor.style.height = `${height}px`;
+                meteor.style.left = `${x}%`;
+                meteor.style.top = `${y}%`;
+                
+                container.appendChild(meteor);
+                
+                // 移除流星元素
+                setTimeout(() => {
+                    meteor.remove();
+                }, 3000);
+            }
+            
+            // 定时创建流星
+            setInterval(createMeteor, window.innerWidth < 768 ? 8000 : 5000); // 移动端减少流星频率
+            createMeteor();
+        }
+        
+        // 微信检测
+        function checkWeixin() {
+            const ua = navigator.userAgent;
+            const isWeixin = /MicroMessenger/i.test(ua);
+            const isApple = /iPhone|iPad/i.test(ua);
+            
+            if (isWeixin) {
+                const weixinTip = document.getElementById('weixinTip');
+                const downloadButton = document.getElementById('downloadButton');
+                weixinTip.style.display = 'block';
+                
+                downloadButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    weixinTip.classList.add('blink');
+                    setTimeout(() => {
+                        weixinTip.classList.remove('blink');
+                    }, 3000);
+                });
+            }
+            
+            // 苹果设备提示
+            if (isApple) {
+                setTimeout(() => {
+                    alert('抱歉，没有苹果手机版本');
+                }, 1000);
+            }
+        }
+        
+        // 平滑滚动
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 关闭移动菜单（如果打开）
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (mobileMenu.classList.contains('menu-open')) {
+                        mobileMenu.classList.remove('menu-open');
+                        mobileMenu.classList.add('menu-closed');
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // 移动端调整滚动位置
+                        const offset = window.innerWidth < 768 ? 60 : 80;
+                        window.scrollTo({
+                            top: targetElement.offsetTop - offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // 移动端菜单控制
+        function setupMobileMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const closeMenu = document.getElementById('closeMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+            });
+            
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+            });
+        }
+        
+        // 3D设备展示交互增强
+        function setupDeviceInteraction() {
+            const devices = document.querySelectorAll('.device-frame');
+            
+            devices.forEach(device => {
+                device.addEventListener('mouseenter', () => {
+                    device.style.animationPlayState = 'paused';
+                });
+                
+                device.addEventListener('mouseleave', () => {
+                    device.style.animationPlayState = 'running';
+                });
+                
+                // 点击旋转效果
+                device.addEventListener('click', () => {
+                    device.classList.toggle('rotate-y-180');
+                });
+                
+                // 鼠标移动时的3D效果
+                device.parentElement.addEventListener('mousemove', (e) => {
+                    const rect = device.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const xRotation = ((y / rect.height) - 0.5) * 10;
+                    const yRotation = ((x / rect.width) - 0.5) * -10;
+                    
+                    device.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+                });
+                
+                device.parentElement.addEventListener('mouseleave', () => {
+                    device.style.transform = '';
+                });
+            });
+        }
+        
+        // 触摸友好的按钮样式
+        function setupTouchStyles() {
+            const buttons = document.querySelectorAll('a, button');
+            buttons.forEach(button => {
+                button.addEventListener('touchstart', () => {
+                    button.classList.add('scale-95');
+                });
+                
+                button.addEventListener('touchend', () => {
+                    setTimeout(() => {
+                        button.classList.remove('scale-95');
+                    }, 150);
+                });
+            });
+        }
+        
+        // 滚动进度条
+        function setupScrollIndicator() {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('scrollIndicator').style.width = scrolled + '%';
+                
+                // 导航栏滚动效果
+                const navbar = document.getElementById('navbar');
+                if (winScroll > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-3');
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.add('py-3');
+                    navbar.classList.remove('py-2');
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+        }
+        
+        // 滚动显示动画
+        function setupScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal-element');
+            
+            function checkReveal() {
+                const windowHeight = window.innerHeight;
+                const revealPoint = 150;
+                
+                revealElements.forEach(element => {
+                    const revealTop = element.getBoundingClientRect().top;
+                    
+                    if (revealTop < windowHeight - revealPoint) {
+                        element.classList.add('animate-slide-up');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkReveal);
+            checkReveal(); // 初始检查
+        }
+        
+        // 页面加载完成后执行
+        window.addEventListener('load', () => {
+            createStars();
+            checkWeixin();
+            setupSmoothScroll();
+            setupMobileMenu();
+            setupDeviceInteraction();
+            setupTouchStyles();
+            setupScrollIndicator();
+            setupScrollReveal();
+        });
+    </script>
+</body>
 </html>
