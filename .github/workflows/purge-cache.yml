@@ -7,6 +7,7 @@ on:
     branches:
       - 'main'
     paths:
+      - 'ver_code.json'
       - 'ver_code.txt'
   workflow_dispatch:
     inputs:
@@ -27,6 +28,8 @@ jobs:
           api_token: ${{secrets.CLOUDFLARE_API_TOKEN}}
           purge_everything: false
           purge_files: |
+            https://ygom.top/ver_code.json
+            https://www.ygom.top/ver_code.json
             https://ygom.top/ver_code.txt
             https://www.ygom.top/ver_code.txt
             https://files.ygom.top/files/YGOMobile_latest.Apk
