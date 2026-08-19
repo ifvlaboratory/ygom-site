@@ -1,10 +1,10 @@
 {
-    "versionname" : "3.13.6",
-    "update_time" : "2026年7月",
-    "download_link" : [
+    "versionname": "3.13.6",
+    "update_time": "2026年7月",
+    "download_link": [
         "https://files.ygom.top/files/YGOMobile_3.13.6.Apk"
     ],
-    "pre_release_code" : {
-        "100268201" : 100268201
+    "pre_release_code": {
+        "100268201": "100268201"
     }
 }
