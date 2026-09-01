@@ -1,26 +1,16 @@
 import json
 
 config = {
-    "versionname" : "3.13.6",
-    "update_time" : "2026年7月",
+    "versionname" : "3.13.7",
+    "update_time" : "2026年9月",
     "download_link" : [
-        "https://files.ygom.top/files/YGOMobile_3.13.6.Apk"
+        "https://files.ygom.top/files/YGOMobile_3.13.7.Apk"
     ],
 	"pre_release_code" : {}
 }
 
 pre_release_code = """
-100269038	58083496
-100269113	11876803
-100269215	85482105
-100266001	30752324
-100266002	66247039
-100266003	3635138
-100266004	39030883
-100266005	65424481
-100266006	2419596
-100266007	38817295
-100266008	65302903
+100200292   100200292
 """
 
 for i in pre_release_code.split('\n'):
