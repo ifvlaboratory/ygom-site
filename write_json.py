@@ -1,10 +1,10 @@
 import json
 
 config = {
-    "versionname" : "3.13.7",
+    "versionname" : "3.13.7fix1",
     "update_time" : "2026年9月",
     "download_link" : [
-        "https://files.ygom.top/files/YGOMobile_3.13.7.Apk"
+        "https://files.ygom.top/files/YGOMobile_3.13.7fix1.Apk"
     ],
 	"pre_release_code" : {}
 }
